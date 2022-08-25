@@ -68,7 +68,7 @@
 <jsp:include page="header.jsp" />
 <%@ include file="dbconn.jsp"%>
 <%
-    String sql = "select * from product where p_type =1";
+    String sql = "select * from product where p_type =1 or p_type =2";
     pstmt = conn.prepareStatement(sql);
     rs = pstmt.executeQuery();
 %>

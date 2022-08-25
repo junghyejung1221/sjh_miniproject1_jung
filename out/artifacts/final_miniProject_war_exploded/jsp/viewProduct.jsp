@@ -104,8 +104,7 @@
       <p><form name="addForm" action="addCartProcess.jsp" method="post">
       <a href="#" class="btn btn-info" onclick="addToCart()">
         <input type="hidden" name="btn_addCart" value="<%=p_num %>">
-        상품 주문 &raquo;</a>
-      <a href="./cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a>
+        상품 추가 &raquo;</a>
       <a href="./products.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>
     </form>
 

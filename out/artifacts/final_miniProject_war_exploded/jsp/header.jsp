@@ -92,7 +92,7 @@
                 </li>
 
                 <li>
-                    <a href="#">My page</a>
+                    <a href="./cart.jsp"> My page </a>
                 </li>
 
                 <%
