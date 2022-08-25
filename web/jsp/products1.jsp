@@ -75,7 +75,6 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
-
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
             <%
@@ -83,15 +82,15 @@
             %>
             <div class="col">
                 <div class="card shadow-sm">
-                    <img src="<%=   rs.getURL("p_image") %>" style="width: 100%" />
+                    <img src="<%= rs.getURL("p_image") %>" style="width: 375; height:300" />
 
                     <div class="card-body">
                         <p class="card-text">
                             <tr>
-
+                                <td><%=rs.getString("p_desc") %></td><br>
                                 <td><%=rs.getString("p_num") %></td>
-                                <td><%=rs.getString("p_name") %></td>
-                                <td><%=rs.getString("p_price") %></td>
+                                <td><%=rs.getString("p_name") %></td><br>
+                                <td><%=rs.getString("p_price") %>원</td>
                             </tr>
                         </p>
                         <div class="d-flex justify-content-between align-items-center">
@@ -102,12 +101,8 @@
                                     <input type="submit" value="view">
                                 </form>
 
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                             </div>
-
-                            <div class="col-md-4">
-
-                            </div>
+                            <div class="col-md-4"> </div>
                         </div>
                     </div>
                 </div>
@@ -128,5 +123,31 @@
 <jsp:include page="footer.jsp" />
 
 </body>
+<style>
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100% + 33px);
+        margin-left: 150px;
+    }
+    .col{
+        margin-top: 300px;
+        display: block;
+        width: calc(25% - 33px);
+        text-align: center;
+        text-decoration:none;
+        color: black;
+        float:left;
+        margin-left:50px;
+        margin-right: 50px;
+        margin-bottom: 100px;
+    }
+
+    .col-md-4{
+        clear: both;
+    }
+
+</style>
 </html>
 

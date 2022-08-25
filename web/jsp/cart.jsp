@@ -28,9 +28,7 @@
   request.setCharacterEncoding("utf-8");
 
 
-
-  String query = "select * from cart where u_id = " + String.valueOf(user_id)+";";
-//  String query = "select * from cart ";
+  String query = "select p.p_num,p.p_name,p.p_price,c.c_quan from product As p, cart AS c where c.p_num=p.p_num AND c.u_id = '" +user_id +"' ;";
   System.out.println("[상세 보기 쿼리] : " + query);
 
 
@@ -87,12 +85,12 @@
         while(rs.next()){
       %>
       <tr>
-        <td><%=rs.getString("p_num") %></td>
-        <td>example</td>
-        <td>example</td>
+        <td><%=rs.getString("p.p_name") %></td>
+        <td><%=rs.getInt("p.p_price") %></td>
+        <td><%=rs.getInt("c.c_quan") %></td>
         <td>example</td>
         <td><form name="deletecart" action="removeCartProcess.jsp" method="post" class="badge badge-danger">
-            <input type="hidden" name="btn_dcart" value=" <%=rs.getString("c_num") %>">
+<%--            <input type="hidden" name="btn_dcart" value=" <%=rs.getString("c_num") %>">--%>
             <input type="submit" value="삭제">
         </form></td>
       </tr>
