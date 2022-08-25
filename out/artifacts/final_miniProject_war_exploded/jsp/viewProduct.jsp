@@ -12,6 +12,21 @@
 
 </head>
 <body>
+<div >
+  <p style="height: 150px">상세보기</p>
+</div>
+<%
+  String user_id = (String) session.getAttribute("userid");
+  if (user_id == null){  %>
+<p> 아이디 없음
+<%
+}else if (user_id != null){  %>
+
+<p>아이디 있음
+
+<%
+  }
+%>
 
 <%@ include file="dbconn.jsp"%>
 

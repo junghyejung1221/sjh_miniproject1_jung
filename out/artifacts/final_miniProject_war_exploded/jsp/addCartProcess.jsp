@@ -24,7 +24,25 @@
 
 <fmt:setLocale value="en" scope="page"/>
 <%@ include file="dbconn.jsp"%>
+<%--유저ID도 장바구니 집어넣기--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <%
+    String user_id = (String) session.getAttribute("userid");
+    System.out.println(user_id);
+    if (user_id == null) {
+        System.out.println("아이디 없음 로그인 해주세요!!"); %>
+<script>
+    alert("유저 아이디가 없습니다. 로그인해주세요");
+    document.location.href='login.jsp';
+
+</script>
+
+     <%
+    }
+    else if (user_id != null){
+
+
+
     //primary key 생성위해 cart를 count해주는 db설정
     request.setCharacterEncoding("utf-8");
     Statement stmt0 = conn.createStatement();
@@ -45,7 +63,7 @@
     System.out.println(num);
 
     Statement stmt = conn.createStatement();
-    String query = "INSERT INTO cart(c_num,u_id,p_num,c_quan) VALUES ( "+ count +",'abc1111'," + num + ",'1234')";
+    String query = "INSERT INTO cart(c_num,u_id,p_num,c_quan) VALUES ( "+ count +",'" + user_id + "'," + num + ",'1234')";
 
     rs = stmt.executeQuery(query);
 
@@ -61,12 +79,14 @@
 %>
 
 <script>
-
     alert("장바구니 등록 완료");
     document.location.href='cart.jsp';
 
 </script>
 
+<%
+}
+%>
 </body>
 </html>
 

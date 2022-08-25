@@ -5,17 +5,21 @@
   Time: 오후 6:56
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%
+    String user_id = (String) session.getAttribute("userid");
+    System.out.println("장바구니 창 아이디: "+user_id);
+%>
 <html>
 <head>
-  <link rel = "stylesheet" href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <%
-    String cartId = session.getId();
-  %>
   <title>장바구니</title>
 </head>
 <body>
+<%--<%--%>
+<%--    String cartId = session.getId();--%>
+<%--%>--%>
 <jsp:include page="header.jsp" />
 <%@ include file="dbconn.jsp"%>
 <%
@@ -24,7 +28,9 @@
   request.setCharacterEncoding("utf-8");
 
 
-  String query = "select * from cart ";
+
+  String query = "select * from cart where u_id = " + String.valueOf(user_id) ;
+//  String query = "select * from cart ";
   System.out.println("[상세 보기 쿼리] : " + query);
 
 
@@ -43,7 +49,7 @@
     <table width="100%">
       <tr>
         <td align="left"><a href="removeAllCartProcess.jsp" class="btn btn-danger">삭제하기</a></td>
-        <td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>
+<%--        <td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>--%>
       </tr>
     </table>
   </div>
