@@ -12,4 +12,8 @@
   </head>
   <body>
   <a href="./jsp/Main.jsp">시작</a>  </body>
+  <script>
+    document.location.href='./jsp/Main.jsp';
+
+  </script>
 </html>

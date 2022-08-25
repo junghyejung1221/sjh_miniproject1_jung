@@ -17,9 +17,9 @@
   <title>장바구니</title>
 </head>
 <body>
-<%--<%--%>
-<%--    String cartId = session.getId();--%>
-<%--%>--%>
+<%
+    String cartId = session.getId();
+%>
 <jsp:include page="header.jsp" />
 <%@ include file="dbconn.jsp"%>
 <%
@@ -28,7 +28,7 @@
   request.setCharacterEncoding("utf-8");
 
 
-  String query = "select p.p_num,p.p_name,p.p_price,c.c_quan from product As p, cart AS c where c.p_num=p.p_num AND c.u_id = '" +user_id +"' ;";
+  String query = "select c.c_num, p.p_num,p.p_name,p.p_price,c.c_quan,c.c_order from product As p, cart AS c where c.p_num=p.p_num AND c.u_id = '" +user_id +"' ;";
   System.out.println("[상세 보기 쿼리] : " + query);
 
 
@@ -47,7 +47,7 @@
     <table width="100%">
       <tr>
         <td align="left"><a href="removeAllCartProcess.jsp" class="btn btn-danger">삭제하기</a></td>
-<%--        <td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>--%>
+        <td align="right"><a href="./shippingInfo.jsp?cartId=<%= cartId %>" class="btn btn-success">주문하기</a></td>
       </tr>
     </table>
   </div>
@@ -58,7 +58,8 @@
         <th>가격</th>
         <th>수량</th>
         <th>소계</th>
-        <th>비고</th>
+        <th>선택</th>
+          <th>비고</th>
       </tr>
 <%--      <%--%>
 <%--        int sum = 0;--%>
@@ -87,9 +88,17 @@
       <tr>
         <td><%=rs.getString("p.p_name") %></td>
         <td><%=rs.getInt("p.p_price") %></td>
-        <td><%=rs.getInt("c.c_quan") %></td>
+        <td><%=rs.getInt("c.c_num") %></td>
         <td>example</td>
-        <td><form name="deletecart" action="removeCartProcess.jsp" method="post" class="badge badge-danger">
+          <td>
+<%--              <input id="ck1<%=rs.getInt("c.c_num") %> " type="checkbox"></td>--%>
+              <input type="checkbox" class="input_check" name="class1" id="ck1<%=rs.getInt("c.c_num") %> " value="1" checked>
+          <label for="ck1<%=rs.getInt("c.c_num") %> "> </label></td>
+
+
+          </td>
+
+          <td><form name="deletecart" action="removeCartProcess.jsp" method="post" class="badge badge-danger">
 <%--            <input type="hidden" name="btn_dcart" value=" <%=rs.getString("c_num") %>">--%>
             <input type="submit" value="삭제">
         </form></td>

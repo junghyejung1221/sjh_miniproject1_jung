@@ -8,6 +8,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.net.URLDecoder"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+<%
+    String user_id = (String) session.getAttribute("userid");
+    System.out.println("주문 창 아이디: "+user_id);
+%>
 <%
     request.setCharacterEncoding("UTF-8");
     String cartId = session.getId();
@@ -48,6 +53,24 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
+<%@ include file="dbconn.jsp"%>
+<%
+    int p_num =0;
+
+    request.setCharacterEncoding("utf-8");
+
+
+    String query = "select c.c_num, p.p_num,p.p_name,p.p_price,c.c_quan,c.c_order from product As p, cart AS c where c.c_order='1' AND c.p_num=p.p_num AND c.u_id = '" +user_id +"' ;";
+    System.out.println("[상세 보기 쿼리] : " + query);
+
+
+    Statement stmt = null;
+
+    stmt = conn.createStatement();
+    rs = stmt.executeQuery(query);
+
+
+%>
 <div >
     <p style="height: 150px">주문 정보</p>
 </div>
@@ -68,13 +91,19 @@
     </div>
     <div>
         <table class="table table-hover">
+            <%
+                while(rs.next()){
+            %>
             <tr>
-                <th class="text-center">도서</th>
+                <th class="text-center">물품 : <%=rs.getString("p.p_name") %></th>
                 <th class="text-center">#</th>
-                <th class="text-center">가격</th>
+                <th class="text-center">가격: <%=rs.getString("p.p_price") %></th>
                 <th class="text-center">소계</th>
             </tr>
-
+            <br/>
+            <%
+                }
+            %>
             <tr>
                 <td class="text-center"><em>이름</em></td>
                 <td class="text-center">수량</td>
