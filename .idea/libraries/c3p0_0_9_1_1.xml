@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="c3p0-0.9.1.1">
+    <CLASSES>
+      <root url="jar://C:/jar/c3p0-0.9.1.1.jar!/" />
+      <root url="jar://C:/jar/commons-dbutils-1.5.jar!/" />
+      <root url="jar://C:/jar/commons-io-2.11.0.jar!/" />
+      <root url="jar://C:/jar/gson-2.8.6.jar!/" />
+      <root url="jar://C:/jar/HikariCP-5.0.1.jar!/" />
+      <root url="jar://C:/jar/javax.annotation.jar!/" />
+      <root url="jar://C:/jar/javax.ejb.jar!/" />
+      <root url="jar://C:/jar/javax.jms.jar!/" />
+      <root url="jar://C:/jar/javax.persistence.jar!/" />
+      <root url="jar://C:/jar/javax.resource.jar!/" />
+      <root url="jar://C:/jar/javax.servlet.jar!/" />
+      <root url="jar://C:/jar/javax.servlet.jsp.jar!/" />
+      <root url="jar://C:/jar/javax.servlet.jsp.jstl.jar!/" />
+      <root url="jar://C:/jar/javax.transaction.jar!/" />
+      <root url="jar://C:/jar/jstl-1.2.jar!/" />
+      <root url="jar://C:/jar/logback-classic-1.2.9.jar!/" />
+      <root url="jar://C:/jar/logback-core-1.2.9.jar!/" />
+      <root url="jar://C:/jar/mariadb-java-client-2.6.0.jar!/" />
+      <root url="jar://C:/jar/slf4j-api-1.7.9.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
