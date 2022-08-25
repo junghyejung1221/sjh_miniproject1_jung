@@ -29,7 +29,7 @@
 
 
 
-  String query = "select * from cart where u_id = " + String.valueOf(user_id) ;
+  String query = "select * from cart where u_id = " + String.valueOf(user_id)+";";
 //  String query = "select * from cart ";
   System.out.println("[상세 보기 쿼리] : " + query);
 
