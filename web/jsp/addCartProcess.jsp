@@ -58,20 +58,56 @@
     count = Integer.valueOf(count) + 1;
     System.out.println("cart 아이디 변환후"+count);
 
-    //cart db에 넣기
+
+    //cart에 같은 상품 있을 시 quan +1 로 하기
     String num = (String)request.getParameter("btn_addCart");
     System.out.println(num);
 
-    Statement stmt = conn.createStatement();
-    String query = "INSERT INTO cart(c_num,u_id,p_num,c_quan) VALUES ( "+ count +",'" + user_id + "'," + num + ",'1234')";
+    Statement stmtpnum = conn.createStatement();
+    String querypnum = "select * from cart where p_num='"+ num +"' AND u_id = '" +user_id +"' ;";
+    System.out.println("[상세 보기 쿼리] : " + querypnum);
 
-    rs = stmt.executeQuery(query);
+    rs = stmtpnum.executeQuery(querypnum);
+
+    int cnum =0;
+    int cquan =0;
 
 
-    //cartcount update
-    Statement stmt2 = conn.createStatement();
-    String query2 = " UPDATE cartcount SET num = " + count+ " WHERE id = 'a'";
-    rs = stmt2.executeQuery(query2);
+    while(rs.next()){
+    cnum = rs.getInt("c_num");
+    cquan = rs.getInt("c_quan");
+
+    }
+
+
+    if (cnum == 0 ){
+        System.out.println("같은 물건 없음");
+        //cart db에 넣기
+        System.out.println(num);
+
+        Statement stmt = conn.createStatement();
+        String query = "INSERT INTO cart(c_num,u_id,p_num,c_quan) VALUES ( "+ count +",'" + user_id + "'," + num + ",'1')";
+
+        rs = stmt.executeQuery(query);
+
+
+        //cartcount update
+        Statement stmt2 = conn.createStatement();
+        String query2 = " UPDATE cartcount SET num = " + count+ " WHERE id = 'a'";
+        rs = stmt2.executeQuery(query2);
+
+    } else {
+        System.out.println("같은 물건 있음 번호 : " + cnum + "갯수" + cquan );
+        cquan = cquan + 1;
+
+        //c_quan update
+        Statement stmtcquan = conn.createStatement();
+        String querycquan = " UPDATE cart SET c_quan = '" + cquan + "' where p_num='"+ num +"' AND u_id = '" +user_id +"' ;";
+        System.out.println("[없데이트 상세 보기 쿼리] : " + querycquan);
+        rs = stmtcquan.executeQuery(querycquan);
+    }
+
+
 
 
 
