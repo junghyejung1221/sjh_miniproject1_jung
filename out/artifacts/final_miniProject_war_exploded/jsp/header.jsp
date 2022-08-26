@@ -90,7 +90,7 @@
                 }else if (user_id != null){  %>
 
                 <li>
-                    <a href="logoutSession.jsp">logout</a>
+                    <a href="logoutSession.jsp"> <% out.println(user_id + "방문을 환영합니다        "); %>logout</a>
                 </li>
 
                 <li>

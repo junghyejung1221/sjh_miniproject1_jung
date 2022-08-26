@@ -15,41 +15,9 @@
     String name = (String) session.getAttribute("name");
     String zipCode = (String) session.getAttribute("zipCode");
     String addressName = (String) session.getAttribute("addressName");
-
+    String phone = (String) session.getAttribute("phone");
 
     System.out.println("세션 저장되었나 확인 좀 우편번호 : " + zipCode + ", 이름 : " + name );
-%>
-<%
-    request.setCharacterEncoding("UTF-8");
-    String cartId = session.getId();
-
-    String shipping_cartId = "";
-    String shipping_name = "";
-    String shipping_shippingDate = "";
-    String shipping_country = "";
-    String shipping_zipCode = "";
-    String shipping_addressName = "";
-
-    Cookie[] cookies = request.getCookies();
-
-    if(cookies != null){
-        for(int i = 0; i<cookies.length; i++){
-            Cookie thisCookie = cookies[i];
-            String n = thisCookie.getName();
-            if(n.equals("Shipping_cartId"))
-                shipping_cartId = URLDecoder.decode((thisCookie.getValue()),"utf-8");
-            if(n.equals("Shipping_name"))
-                shipping_name = URLDecoder.decode((thisCookie.getValue()),"utf-8");
-            if(n.equals("Shipping_shippingDate"))
-                shipping_shippingDate = URLDecoder.decode((thisCookie.getValue()),"utf-8");
-            if(n.equals("Shipping_country"))
-                shipping_country = URLDecoder.decode((thisCookie.getValue()),"utf-8");
-            if(n.equals("Shipping_zipCode"))
-                shipping_zipCode = URLDecoder.decode((thisCookie.getValue()),"utf-8");
-            if(n.equals("Shipping_addressName"))
-                shipping_addressName = URLDecoder.decode((thisCookie.getValue()),"utf-8");
-        }
-    }
 %>
 
 <html>
@@ -87,9 +55,10 @@
     </div>
     <div class="row justify-content-between">
         <div class="col-4" align="left">
-            <strong> 배송 주소 </strong> <br> 성명 : <br>
-            우편번호 :<br>
-            주소 :  <br>
+            우편번호 : <% out.println(zipCode); %>  <br>
+            배송 주소 : <% out.println(addressName); %> <br>
+            주문자 : <% out.println(name); %><br>
+            전화번호 : <% out.println(name); %> <br>
         </div>
         <div class ="col-4" align="right">
             <p> <em> 배송일:</em>
@@ -124,7 +93,7 @@
             </tr>
         </table>
 
-        <a href=" ./shippingInfo.jsp?cartId=<%=shipping_cartId %>"class="btn btn-secondary" role="button">이전</a>
+<%--        <a href=" ./shippingInfo.jsp?cartId=<%=shipping_cartId %>"class="btn btn-secondary" role="button">이전</a>--%>
         <a href=" ./orderProcess.jsp" class="btn btn-success" role="button">주문</a>
         <a href=" ./checkOutCancelled.jsp" class="btn btn-secondary" role="button">취소</a>
 

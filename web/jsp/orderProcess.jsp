@@ -21,8 +21,16 @@
 <%--유저ID도 장바구니 집어넣기--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <%
+  String name = (String) session.getAttribute("name");
+  String zipCode = (String) session.getAttribute("zipCode");
+  String addressName = (String) session.getAttribute("addressName");
+  String phone = (String) session.getAttribute("phone");
+
+  System.out.println("세션 저장되었나 확인 좀 우편번호 : " + zipCode + ", 이름 : " + name );
+
+
   String user_id = (String) session.getAttribute("userid");
-  System.out.println(user_id);
+  System.out.println("주문 창 " + user_id);
   if (user_id == null) {
     System.out.println("아이디 없음 로그인 해주세요!!"); %>
 <script>
@@ -86,7 +94,7 @@ else if (user_id != null){
   ResultSet rs3 = null;
   String code= null;
 
-  String query3 = "SELECT LEFT(UUID(), 4) AS code;";
+  String query3 = "SELECT LEFT(UUID(), 4) AS code;";  //고유성 있는 무작위 코드
   stmt3 = conn.createStatement();
   rs3 = stmt3.executeQuery(query3);
 
@@ -103,13 +111,13 @@ else if (user_id != null){
     price = rs.getInt("p.p_price");
     pquan = rs.getInt("p.p_quan");
 
-    r_price +=price;
+    r_price += (price * cquan);
 
 
 
     //order_list
     stmt2 = conn.createStatement();
-    String query2 = "INSERT INTO order_list(o_code,u_id,p_num,o_quan,o_total) VALUES ('"+ code+"', '" + user_id+"', '" + pnum +"', '"+ cquan+"','"+price+"' );";
+    String query2 = "INSERT INTO order_list(o_code,u_id,p_num,o_quan,o_total) VALUES ('"+ code+"', '" + user_id+"', '" + pnum +"', '"+ cquan+"','"+ (price * cquan )+"' );";
 
 
     System.out.println("[상세 보기 쿼리] : " + query2);
@@ -126,7 +134,8 @@ else if (user_id != null){
 
 //receipt 넣기
   Statement stmto_list = conn.createStatement();
-  String queryo_list = "INSERT INTO receipt(r_code, u_id, r_total ) VALUES (  '" + code+"', '" + user_id +"', '"+r_price+"' );";
+  String queryo_list = "INSERT INTO receipt(r_code, u_id, r_total, r_name, r_address,r_zipcode, r_phone ) " +
+          " VALUES (  '" + code+"', '" + user_id +"', '"+r_price+"', ' " + name +"','" + addressName +"','" + zipCode +"',' " + phone + " '  );";
 
 
   System.out.println("[상세 보기 쿼리] : " + queryo_list);
