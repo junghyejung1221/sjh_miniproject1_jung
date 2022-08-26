@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: iot29
   Date: 2022-08-26
-  Time: 오후 2:39
+  Time: 오후 4:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -72,23 +72,23 @@
 
 
 <div >
-  <p style="height: 150px">마이페이지</p>
+  <p style="height: 150px">장바구니 </p>
 </div>
 
 
-  <div class="my_box">
+<div class="my_box">
   <div class = "sidemenu">
-  <ul>
-    <li><a class="active" href="myPage.jsp">My Page</a></li>
-    <li><a href="userInfo.jsp">회원 정보 수정 </a></li>
-    <li><a href="userCart.jsp">장바구니</a></li>
-    <li><a href="orderResult.jsp">주문확인</a></li>
-  </ul>
+    <ul>
+      <li><a  href="myPage.jsp">My Page</a></li>
+      <li><a href="userInfo.jsp">회원 정보 수정 </a></li>
+      <li><a class="active" href="userCart.jsp">장바구니</a></li>
+      <li><a href="orderResult.jsp">주문확인</a></li>
+    </ul>
   </div>
   <div class = "my_right">
-    <h4>마이페이지</h4>
+    <h4>장바구니</h4>
   </div>
-  </div>
+</div>
 
 <!--FOOTER-->
 <jsp:include page="footer.jsp" />

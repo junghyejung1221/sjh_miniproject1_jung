@@ -80,9 +80,9 @@
   <div class = "sidemenu">
   <ul>
     <li><a class="active" href="myPage.jsp">My Page</a></li>
-    <li><a href="#">회원 정보 수정 </a></li>
-    <li><a href="#">장바구니</a></li>
-    <li><a href="#">주문확인</a></li>
+    <li><a href="userInfo.jsp">회원 정보 수정 </a></li>
+    <li><a href="userCart.jsp">장바구니</a></li>
+    <li><a href="orderResult.jsp">주문확인</a></li>
   </ul>
   </div>
   <div class = "my_right">
