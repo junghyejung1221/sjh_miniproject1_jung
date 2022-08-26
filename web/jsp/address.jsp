@@ -94,15 +94,13 @@
 
                 <div class="form-group row">
                     <div class="col-sm-5">
-                        <label class="col-sm-2">전화번호 :</label> <input  placeholder="전화번호를 입력하세요. " name="phone" type="text" class="form-control" />
+                        <label class="col-sm-2">전화번호 :</label> <input  placeholder="-없이 입력하세요 " name="phone" type="text" class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-offset-2 col-sm-10 ">
                         <a href="./cart.jsp" class="btn btn-secondary" role="button"> 이전 </a>
                         <input	type="submit" class="btn" value="등록" />
-                    </div>
                 </div>
             </form>
         </div>
