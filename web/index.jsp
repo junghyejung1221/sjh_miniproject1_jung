@@ -13,10 +13,12 @@
   <body>
   <a href="./jsp/Main.jsp">시작</a>
   <a href="./jsp/cartList.jsp">연습</a>
+  <a href="./jsp/myPage.jsp">order</a>
+
 
   </body>
   <script>
-    document.location.href='./jsp/Main.jsp';
+    // document.location.href='./jsp/Main.jsp';
 
   </script>
 </html>

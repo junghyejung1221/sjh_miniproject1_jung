@@ -94,7 +94,7 @@
                 </li>
 
                 <li>
-                    <a href="#">My page</a>
+                    <a href="myPage.jsp">My page</a>
                 </li>
 
                 <%
