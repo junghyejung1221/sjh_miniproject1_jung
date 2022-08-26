@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ko">
 <head>
@@ -214,7 +215,7 @@
                     </div>
                 </div>
             </li>
-            <li class="item">
+            <!-- <li class="item">
                 <div class="item__name">STORE</div>
                 <div class="item__contents">
                     <div class="contents__menu">
@@ -243,8 +244,8 @@
                         </div>
                     </div>
                 </div>
-            </li>
-            <li class="item">
+            </li> -->
+            <!-- <li class="item">
                 <div class="item__name">RESPONSIBILITY</div>
                 <div class="item__contents">
                     <div class="contents__menu">
@@ -282,18 +283,18 @@
                                     <li>탬버린즈 재단</li>
                                     <li>지구촌 봉사의 달</li>
                                 </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="contents__texture">
-                        <div class="inner">
-                            <h4>다 사용한 용기 재활용</h4>
-                            <p>탬버린즈와 함께 환경을 보호합시다</p>
-                        </div>
-                    </div>
-                </div>
-            </li>
+                            </li> -->
         </ul>
+    </div>
+    <!-- <div class="contents__texture">
+        <div class="inner">
+            <h4>다 사용한 용기 재활용</h4>
+            <p>탬버린즈와 함께 환경을 보호합시다</p>
+        </div>
+    </div> -->
+    </div>
+    </li>
+    </ul>
 
     </div>
 

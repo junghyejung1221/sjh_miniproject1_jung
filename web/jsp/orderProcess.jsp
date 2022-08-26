@@ -62,8 +62,10 @@ else if (user_id != null){
 //  rs = stmt.executeQuery(query);
 
 
+
   //pnum 찾기
-  String queryp_num = "select c.c_num, p.p_num,p.p_name,p.p_price,c.c_quan,c.c_order from product As p, cart AS c where c.c_order='1' AND c.p_num=p.p_num AND c.u_id = '" +user_id +"' ;";
+  String queryp_num = "select c.c_num, p.p_num,p.p_name,p.p_price,c.c_quan,c.c_order,p.p_quan "+
+          "from product As p, cart AS c where c.c_order='1' AND c.p_num=p.p_num AND c.u_id = '" +user_id +"' ;";
   System.out.println("[상세 보기 쿼리] : " + queryp_num);
 
 
@@ -72,24 +74,59 @@ else if (user_id != null){
   stmtp_num = conn.createStatement();
   rs = stmtp_num.executeQuery(queryp_num);
 
-  int pnum ;
+  int pnum = 0;
+  int cquan=0;
+  int pquan =0;
+  int price =0;
+  int r_price=0;
+  Statement stmt2 = null;
+  Statement stmt3 =null;
+
   ResultSet rs2 = null;
+  ResultSet rs3 = null;
+  String code= null;
+
+  String query3 = "SELECT LEFT(UUID(), 4) AS code;";
+  stmt3 = conn.createStatement();
+  rs3 = stmt3.executeQuery(query3);
+
+  while(rs3.next()){
+    code= rs3.getString("code");
+  }
+
+  System.out.println("[code] : " + code);
+
+
   while(rs.next()){
     pnum = rs.getInt("p.p_num");
+    cquan = rs.getInt("c.c_quan");
+    price = rs.getInt("p.p_price");
+    pquan = rs.getInt("p.p_quan");
 
-    //order product 넣기
-    Statement stmt2 = conn.createStatement();
-    String query2 = "INSERT INTO order_product(o_num, u_id ,p_num) VALUES (  '" + count+"', '" + user_id +"', '"+ pnum +"' );";
+    r_price +=price;
+
+
+
+    //order_list
+    stmt2 = conn.createStatement();
+    String query2 = "INSERT INTO order_list(o_code,u_id,p_num,o_quan,o_total) VALUES ('"+ code+"', '" + user_id+"', '" + pnum +"', '"+ cquan+"','"+price+"' );";
 
 
     System.out.println("[상세 보기 쿼리] : " + query2);
 
     rs2 = stmt2.executeQuery(query2);
+
+    //p_quan에서 빼기
+    Statement stmt_d = conn.createStatement();
+    String sql = " UPDATE product SET p_quan = " + (pquan-cquan)+ " WHERE p_num = "+pnum;
+    rs2 = stmt_d.executeQuery(sql);
+
+
   }
 
-//order list 넣기
+//receipt 넣기
   Statement stmto_list = conn.createStatement();
-  String queryo_list = "INSERT INTO order_list(o_num, u_id ) VALUES (  '" + count+"', '" + user_id +"' );";
+  String queryo_list = "INSERT INTO receipt(r_code, u_id, r_total ) VALUES (  '" + code+"', '" + user_id +"', '"+r_price+"' );";
 
 
   System.out.println("[상세 보기 쿼리] : " + queryo_list);
@@ -106,10 +143,7 @@ else if (user_id != null){
 
   rs = stmt.executeQuery(query);
 
-  //ordercount update
-  Statement stmt_d = conn.createStatement();
-  String query_d = " UPDATE ordercount SET num = " + count+ " WHERE id = 'a'";
-  rs = stmt_d.executeQuery(query_d);
+
 
 
 

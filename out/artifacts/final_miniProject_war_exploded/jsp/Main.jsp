@@ -5,6 +5,7 @@
   Time: 오후 2:37
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ko">
 <head>
@@ -81,53 +82,6 @@
     <video class="video--transform" playsinline="" autoplay="" muted="" loop="" poster="https://www.tamburins.com/img/store/dosan/Dosan1_poster.jpg">
         <source src="https://www.tamburins.com/img/store/dosan/Dosan1.mp4" type="video/mp4">
     </video>
-</section>
-
-
-<!--AWARDS-->
-<section class="awards">
-    <div class="inner">
-
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide1.jpg" alt="대통령 표창" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide2.jpg" alt="대통령 표창 (3년 연속)" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide3.jpg" alt="우수사업주 인증" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide4.jpg" alt="경연대회 대상" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide5.jpg" alt="대한상의회장상" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide6.jpg" alt="기업사회공헌 활동 부문" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide7.jpg" alt="KSI 1위 (5년 연속)" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide8.jpg" alt="KS-SQI 1위 (5년 연속)" />
-                </div>
-                <div class="swiper-slide">
-                    <img src="../resources/images/awards_slide10.jpg" alt="동반성장 부문 (4년 연속)" />
-                </div>
-            </div>
-        </div>
-
-        <div class="swiper-prev">
-            <span class="material-icons">arrow_back</span>
-        </div>
-        <div class="swiper-next">
-            <span class="material-icons">arrow_forward</span>
-        </div>
-
-    </div>
 </section>
 
 

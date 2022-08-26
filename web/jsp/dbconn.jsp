@@ -5,7 +5,6 @@
   Time: 오후 7:39
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.sql.*"%>
 <%
     Connection conn = null;

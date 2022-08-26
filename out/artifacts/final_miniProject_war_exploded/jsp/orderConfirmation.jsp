@@ -12,6 +12,12 @@
 <%
     String user_id = (String) session.getAttribute("userid");
     System.out.println("주문 창 아이디: "+user_id);
+    String name = (String) session.getAttribute("name");
+    String zipCode = (String) session.getAttribute("zipCode");
+    String addressName = (String) session.getAttribute("addressName");
+
+
+    System.out.println("세션 저장되었나 확인 좀 우편번호 : " + zipCode + ", 이름 : " + name );
 %>
 <%
     request.setCharacterEncoding("UTF-8");
@@ -49,7 +55,7 @@
 <html>
 <head>
 
-    <title> 주문 정보</title>
+    <title> 주문 확인</title>
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -72,12 +78,12 @@
 
 %>
 <div >
-    <p style="height: 150px">주문 정보</p>
+    <p style="height: 150px">주문 확인</p>
 </div>
 
 <div class="container col-8 alert alert-info">
     <div class = "text-center ">
-        <h1> 영수증</h1>
+        <h1> 주문 확인 페이지 </h1>
     </div>
     <div class="row justify-content-between">
         <div class="col-4" align="left">
@@ -119,7 +125,7 @@
         </table>
 
         <a href=" ./shippingInfo.jsp?cartId=<%=shipping_cartId %>"class="btn btn-secondary" role="button">이전</a>
-        <a href=" ./orderProcess.jsp" class="btn btn-success" role="button">주문완료</a>
+        <a href=" ./orderProcess.jsp" class="btn btn-success" role="button">주문</a>
         <a href=" ./checkOutCancelled.jsp" class="btn btn-secondary" role="button">취소</a>
 
     </div>

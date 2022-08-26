@@ -11,7 +11,10 @@
     <title>$Title$</title>
   </head>
   <body>
-  <a href="./jsp/Main.jsp">시작</a>  </body>
+  <a href="./jsp/Main.jsp">시작</a>
+  <a href="./jsp/cartList.jsp">연습</a>
+
+  </body>
   <script>
     document.location.href='./jsp/Main.jsp';
 

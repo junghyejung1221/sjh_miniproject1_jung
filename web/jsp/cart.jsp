@@ -5,7 +5,7 @@
   Time: 오후 6:56
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
 <%
@@ -39,6 +39,15 @@
 
 
 %>
+<script type="text/javascript">
+    function YnCheck(obj){
+        if ($("#checkYn").is(':checked')==true){
+            data.set("checkYn",1) ;
+        }else {
+            data.set("checkYn", 0) ;
+        }
+    };
+</script>
 <div >
     <p style="height: 150px">장바구니</p>
 </div>
@@ -88,15 +97,23 @@
       <tr>
         <td><%=rs.getString("p.p_name") %></td>
         <td><%=rs.getInt("p.p_price") %></td>
-        <td><%=rs.getInt("c.c_num") %></td>
+        <td><%=rs.getInt("c.c_quan") %></td>
         <td>example</td>
-          <td>
-<%--              <input id="ck1<%=rs.getInt("c.c_num") %> " type="checkbox"></td>--%>
-              <input type="checkbox" class="input_check" name="class1" id="ck1<%=rs.getInt("c.c_num") %> " value="1" checked>
-          <label for="ck1<%=rs.getInt("c.c_num") %> "> </label></td>
+<%--          <td class = "Check">--%>
+<%--          <input type="checkbox"  name="class1" <%=rs.getInt("c.c_num") %> ">  value="1" checked>--%>
+<%--          <label for="ck1<%=rs.getInt("c.c_num") %> "> </label></td>--%>
+<%--          </td>--%>
 
+<%--          <td class = "Check">--%>
+<%--              <input type="checkbox"  name="class1" id="checkYn" onchange="YnCheck(this);" >--%>
+<%--              <label for= "checkYn"> </label>--%>
+<%--          </td>--%>
 
-          </td>
+          <td><form name="addOrder" action="addOrder.jsp" >
+              <input type="checkbox"  name="class1" <%=rs.getInt("c.c_num") %> ">
+              <input type="submit" value="Submit">
+          </form></td>
+
 
           <td><form name="deletecart" action="removeCartProcess.jsp" method="post" class="badge badge-danger">
 <%--            <input type="hidden" name="btn_dcart" value=" <%=rs.getString("c_num") %>">--%>
