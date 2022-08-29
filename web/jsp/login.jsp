@@ -5,43 +5,14 @@
   Time: 오전 11:00
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>shop</title>
-
-    <!--Open Graph-->
-    <!--http://ogp.me/-->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="tamburins" />
-    <meta property="og:title" content="tamburins" />
-    <meta property="og:description" content="tamburins" />
-    <meta property="og:url" content="https://www.tamburins.com/" />
-
-    <!--Twitter Card-->
-    <!--https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started-->
-    <meta property="twitter:card" content="summary" />
-    <meta property="twitter:site" content="tamburins" />
-    <meta property="twitter:title" content="tamburins" />
-    <meta property="twitter:description" content="tamburins" />
-    <meta property="twitter:url" content="https://www.tamburins.com/" />
-
-    <!--파비콘-->
-    <!--<link rel="shortcut icon" href="favicon.ico" />-->
-    <link rel="icon" href="./favicon.png" />
-    <!--브라우저 스타일 초기화-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css" />
-    <!--Google Fonts - 나눔고딕-->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet" />
-    <!--Google Material Icons-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-
-    <link rel="stylesheet" href="../resources/css/common.css" />
-    <link rel="stylesheet" href="../resources/css/main.css" />
     <link rel="stylesheet" href="../resources/css/signin.css" />
 
 
@@ -81,9 +52,9 @@
             </p>
         </form>
         <div class="actions">
-            <a href="javascript:void(0)">회원가입</a>
-            <a href="javascript:void(0)">아이디 찾기</a>
-            <a href="javascript:void(0)">비밀번호 찾기</a>
+            <a href="./signup.jsp">회원가입</a>
+            <a href="./searchID.jsp">아이디 찾기</a>
+            <a href="./searchPassword.jsp">비밀번호 찾기</a>
         </div>
     </div>
 </section>

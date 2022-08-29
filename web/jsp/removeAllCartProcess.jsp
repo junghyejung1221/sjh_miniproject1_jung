@@ -40,7 +40,7 @@
 <script>
 
   alert("삭제 완료");
-  document.location.href='cart.jsp';
+  document.location.href='userCart.jsp';
 
 </script>
 

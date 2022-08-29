@@ -155,7 +155,7 @@
             <br><a href="#" class="btn btn-info" onclick="addToCart()">
             <input type="hidden" name="btn_addCart" value="<%=p_num %>">
             상품 추가 &raquo;</a>
-            <br><a href="./products.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>
+            <br><a href="./productsAll.jsp" class="btn btn-secondary"> 상품 목록 &raquo;</a>
         </form>
 
         </div>

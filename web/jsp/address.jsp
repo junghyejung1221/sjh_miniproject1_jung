@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
+<%@page import="java.util.ArrayList"%>
 <html lang="ko">
 <head>
     <meta charset="UTF-8" />
@@ -59,6 +61,47 @@
     <script defer src="../resources/js/youtube.js"></script>
     <script defer src="../resources/js/common.js"></script>
     <script defer src="../resources/js/main.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.js"></script>
+    <script>
+        // function formSubmit() {
+        //     if(document.getElementById("Name").value.length == 0 ) {
+        //         alert('이름을 입력하세요');
+        //         document.getElementById("Name").focus();
+        //         return false;
+        //     }
+        //     if(document.getElementById("zipCode").value == "" ) {
+        //         alert('우편 번호를 입력하세요');
+        //         document.getElementById("zipCode").focus();
+        //         return false;
+        //     }
+        //     if(document.getElementById("addressName").value == "" ) {
+        //         alert('주소를 입력하세요');
+        //         document.getElementById("addressName").focus();
+        //         return false;
+        //     }
+        //     if(document.getElementById("phone").value == "" ) {
+        //         alert('전화번호를 입력하세요');
+        //         document.getElementById("phone").focus();
+        //         return false;
+        //     }
+        // }
+
+        const patt = new RegExp("[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}");
+        const res = patt.test( $("#phone").val());
+
+        function add_Form(){
+            if($("#Name").val()=='') { alert("이름을 입력하세요!!!"); $("#name").focus(); return false;  }
+            if($("#zipCode").val()=='') { alert("우편번호를 입력하세요!!!");  $("#zipCode").focus(); return false;  }
+            if($("#addressName").val()=='') { alert("주소를 입력하세요!!!");  $("#addressName").focus(); return false;  }
+            if($("#phone").val()=='') { alert("전화번호를 입력하세요!!!");  $("#phone").focus(); return false;  }
+            if( !patt.test( $("#phone").val()) ){alert("전화번호를 정확히 입력하여 주십시오.");  $("#phone").focus(); return false;}
+
+
+            $("#next_form").attr("action", "./ProcessOrderList.jsp").submit();
+
+
+        }
+    </script>
 </head>
 <body>
 
@@ -73,39 +116,68 @@
         </h2>
 
         <div class="container">
-            <form action="./ProcessOrderList.jsp" class="form-horizontal" method="post">
-                <div class="form-group row">
+<%--            <form action="./ProcessOrderList.jsp" id="next_form" class="form-horizontal" method="post" >--%>
+    <form  id="next_form" class="form-horizontal" method="post" >
+
+    <div class="form-group row">
 
                     <div class="col-sm-3">
-                        <label class="col-sm-2">주문자명 : </label> <input  placeholder="주문자 이름을 입력하세요. " name="name" type="text" class="form-control" />
+                        <label class="col-sm-2">주문자명 : </label> <input  placeholder="주문자 이름을 입력하세요. " id="Name" name="name" type="text" class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-sm-3">
-                        <label class="col-sm-2">우편번호 : </label> <input  placeholder="우편번호를 입력하세요. " name="zipCode" type="text" class="form-control" />
+                        <label class="col-sm-2">우편번호 : </label> <input  placeholder="우편번호를 입력하세요. " id="zipCode" name="zipCode" type="text" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-5">
-                        <label class="col-sm-2">주소 : </label><input  placeholder="주소를 입력하세요. " name="addressName" type="text" class="form-control" />
+                        <label class="col-sm-2">주소 : </label><input  placeholder="주소를 입력하세요. " id="addressName" name="addressName" type="text" class="form-control" />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-sm-5">
-                        <label class="col-sm-2">전화번호 :</label> <input  placeholder="-없이 입력하세요 " name="phone" type="text" class="form-control" />
+                        <label class="col-sm-2">전화번호 :</label> <input  placeholder="00*-000*-0000" id="phone" name="phone" type="text" class="form-control" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{3,4}" maxlength="13"  />
                     </div>
                 </div>
 
                 <div class="form-group row">
                         <a href="./cart.jsp" class="btn btn-secondary" role="button"> 이전 </a>
-                        <input	type="submit" class="btn" value="등록" />
+<%--                        <input id="submit"	type="submit" class="btn" value="등록" />--%>
+                    <input id="next" type="button" class="btn" value="등록"  onclick="add_Form()" />
+
                 </div>
             </form>
         </div>
     </div>
 </section>
+
+<%
+    request.setCharacterEncoding("utf-8");
+    /* String[] checknum = request.getParameterValues("check_cnum"); */
+
+
+
+    session.setMaxInactiveInterval(3600*7); //세션 유지 기간 설정
+
+    ArrayList<String> list = (ArrayList<String>)session.getAttribute("checkList");
+    String[] checkNum= request.getParameterValues("check_cnum");
+
+
+
+//session.getAttribute("checkList") == null 이든 아니든 상관없이
+    list = new ArrayList<String>();
+    for(String num: checkNum){
+
+        list.add(num);
+    }
+
+
+    session.setAttribute("checkList", list);
+    System.out.println("prdlist:"+list);
+%>
 
 <!--FOOTER-->
 <jsp:include page="footer.jsp" />

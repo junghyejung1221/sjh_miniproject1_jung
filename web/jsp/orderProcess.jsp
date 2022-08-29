@@ -113,8 +113,6 @@ else if (user_id != null){
 
     r_price += (price * cquan);
 
-
-
     //order_list
     stmt2 = conn.createStatement();
     String query2 = "INSERT INTO order_list(o_code,u_id,p_num,o_quan,o_total) VALUES ('"+ code+"', '" + user_id+"', '" + pnum +"', '"+ cquan+"','"+ (price * cquan )+"' );";

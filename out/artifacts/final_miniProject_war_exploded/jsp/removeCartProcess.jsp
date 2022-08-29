@@ -13,6 +13,8 @@
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.util.Locale"%>
 <%@ page import="static java.lang.Integer.*" %>
+<%@page import="java.util.ArrayList"%>
+
 
 <!DOCTYPE html>
 <html>
@@ -25,25 +27,60 @@
 <fmt:setLocale value="en" scope="page"/>
 <%@ include file="dbconn.jsp"%>
 <%
-
   request.setCharacterEncoding("utf-8");
 
-  //cart db삭제
-  String num = (String)request.getParameter("btn_dcart");
-  System.out.println(num);
+
+  ArrayList<String> list ;
+  String[] checkNum= request.getParameterValues("check_cnum");
+
+
+
+//session.getAttribute("checkList") == null 이든 아니든 상관없이
+  list = new ArrayList<String>();
+  for(String num: checkNum){
+
+    list.add(num);
+  }
+
+  System.out.println("prdlist:" + list);
 
   Statement stmt = conn.createStatement();
-  String query = "DELETE FROM cart WHERE c_num = '" + num + "'";
 
-  rs = stmt.executeQuery(query);
 
+  for(int i=0;i<list.size(); i++) {
+    System.out.println(list.get(i) + "<br>");
+    String query = "DELETE FROM cart  where c_num = " + list.get(i);
+
+    System.out.println("[삭제 완료 확인 쿼리 ] : " + query);
+
+    stmt = conn.createStatement();
+    stmt.executeQuery(query);
+
+
+  }
 
 %>
+
+<%--<%--%>
+
+<%--  request.setCharacterEncoding("utf-8");--%>
+
+<%--  //cart db삭제--%>
+<%--  String[] num = request.getParameterValues("btn_dcart");--%>
+<%--  System.out.println("삭제할 물품 숫자 ::::  " +num);--%>
+
+<%--  Statement stmt = conn.createStatement();--%>
+<%--  String query = "DELETE FROM cart WHERE c_num = '" + num + "'";--%>
+
+<%--  rs = stmt.executeQuery(query);--%>
+
+
+<%--%>--%>
 
 <script>
 
   alert("삭제 완료");
-  document.location.href='cart.jsp';
+  document.location.href='userCart.jsp';
 
 </script>
 

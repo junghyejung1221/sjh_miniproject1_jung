@@ -16,7 +16,6 @@
     String zipCode = (String) session.getAttribute("zipCode");
     String addressName = (String) session.getAttribute("addressName");
     String phone = (String) session.getAttribute("phone");
-
     System.out.println("세션 저장되었나 확인 좀 우편번호 : " + zipCode + ", 이름 : " + name );
 %>
 <%@ include file="dbconn.jsp"%>
@@ -24,20 +23,28 @@
     int price = 0 ;
     int quan = 0;
     int total = 0;
-
+    int count = 0;
 
     request.setCharacterEncoding("utf-8");
-
-
     String query = "select p.p_image,c.c_num, p.p_num,p.p_name,p.p_price,c.c_quan,c.c_order from product As p, cart AS c where c.c_order='1' AND c.p_num=p.p_num AND c.u_id = '" +user_id +"' ;";
     System.out.println("[상세 보기 쿼리] : " + query);
-
-
     Statement stmt = null;
-
     stmt = conn.createStatement();
     rs = stmt.executeQuery(query);
 
+    String query0 = "select  count(*) As cnt ,c.c_num, p.p_image,c.c_num, p.p_num,p.p_name,p.p_price,c.c_quan,c.c_order from product As p, cart AS c where c.c_order='1' AND c.p_num=p.p_num AND c.u_id = '" +user_id +"' ;";
+    System.out.println("[상세 보기 쿼리] : " + query0);
+
+
+    Statement stmt0 = null;
+    ResultSet rs0  = null;
+
+    stmt0 = conn.createStatement();
+    rs0 = stmt0.executeQuery(query0);
+
+    while(rs0.next()){
+        count =  rs0.getInt("cnt");
+    }
 
 %>
 <html lang="ko">
@@ -95,29 +102,26 @@
     <script defer src="../resources/js/main.js"></script>
 
     <style>
-    .orderInfo { border:5px solid #eee; padding:10px 20px; margin:20px 20px;}
-    .orderInfo span { font-size:10px; font-weight:bold; display:inline-block; width:300px; }
-
-    .orderView li { margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #999; }
-    .orderView li::after { content:""; display:block; clear:both; }
-
-    .thumb { float:left; width:100px;margin-bottom:20px; }
-    .thumb img { width:100px; height:100px; }
-    .gdsInfo { float:right; width:calc(100% - 220px); line-height:2; }
-    .gdsInfo span { font-size:10px; font-weight:bold; display:inline-block; width:calc(100% ); margin-right:10px; }
-    .button {
-
-    }
-    .button .btnleft{
-        float:left;
-    }
-    .button .btnright{
-        float:right;
-    }
-    .c_bold{
-        font-size:30px;
-        font-weight:bold;
-    }
+        .orderInfo { border:5px solid #eee; padding:10px 20px; margin:20px 20px;}
+        .orderInfo span { font-size:10px; font-weight:bold; display:inline-block; width:300px; }
+        .orderView li { margin-bottom:20px; padding-bottom:20px; border-bottom:1px solid #999; }
+        .orderView li::after { content:""; display:block; clear:both; }
+        .thumb { float:left; width:100px;margin-bottom:20px; }
+        .thumb img { width:100px; height:100px; }
+        .gdsInfo { float:right; width:calc(100% - 220px); line-height:2; }
+        .gdsInfo span { font-size:10px; font-weight:bold; display:inline-block; width:calc(100% ); margin-right:10px; }
+        .button {
+        }
+        .button .btnleft{
+            float:left;
+        }
+        .button .btnright{
+            float:right;
+        }
+        .c_bold{
+            font-size:30px;
+            font-weight:bold;
+        }
     </style>
 </head>
 <body>
@@ -125,6 +129,27 @@
 <!--HEADER-->
 <jsp:include page="header.jsp" />
 
+
+
+<%
+    if (count == 0 ){
+        System.out.println("선택한 상품 없음 !!!!!!!!!!!!!!!!!");
+        System.out.println("선택한 상품 없음 !!!!!!!!!!!!!!!!!");
+        System.out.println("선택한 상품 없음 !!!!!!!!!!!!!!!!!");
+        System.out.println("선택한 상품 없음 !!!!!!!!!!!!!!!!!");
+        %>
+<script>
+    alert("선택한 상품이 없습니다. ");
+    document.location.href='cart.jsp';
+
+</script>
+
+
+<%
+    }else {
+
+    }
+%>
 <section class="signin">
     <h1>로그인</h1>
     <div class="signin__card">
@@ -145,13 +170,10 @@
                 <table class="table table-hover">
                     <%
                         while(rs.next()){
-
                             price = rs.getInt("p.p_price");
                             quan = rs.getInt("c.c_quan");
-
                             total += (price * quan);
                             System.out.println("가격 " + price + " ,수량" + quan + "총액 = " + total);
-
                     %>
 
                     <ul class="orderView">
@@ -186,8 +208,8 @@
                 <%--        <a href=" ./shippingInfo.jsp?cartId=<%=shipping_cartId %>"class="btn btn-secondary" role="button">이전</a>--%>
 
                 <div class="button">
-                <a href=" ./address.jsp" class="btn btnleft" role="button">이전</a>
-                <a href=" ./orderProcess.jsp" class="btn btnright" role="button">주문</a>
+                    <a href=" ./address.jsp" class="btn btnleft" role="button">이전</a>
+                    <a href=" ./orderProcess.jsp" class="btn btnright" role="button">주문</a>
                 </div>
             </div>
         </div>
